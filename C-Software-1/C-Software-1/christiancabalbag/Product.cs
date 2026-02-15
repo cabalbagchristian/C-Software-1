@@ -13,12 +13,12 @@ namespace christiancabalbag
         private int productId;
         private string name;
         private int inStock;
+        private decimal price;
         private int min;
         private int max;
-        public static BindingList<Part> AssociatedParts = new BindingList<Part>();
+        public BindingList<Part> AssociatedParts = new BindingList<Part>();
         public int ProductId { get; set; }
-        public string Name { get; set; }
-        private decimal price { get; set; }
+        public string Name { get; set; }        
         public string Price //make sure this works
         {
             get { return price.ToString("C"); }
@@ -38,12 +38,12 @@ namespace christiancabalbag
         public int Min { get; set; }
         public int Max { get; set; }
         public Product() { }
-        public Product(int productID, string name, decimal price, int inStock, int min, int max)
+        public Product(int productID, string name, int inStock, decimal price, int min, int max)
         {
             ProductId = productID;
             Name = name;
-            Price = price.ToString();            
             InStock = inStock;
+            Price = price.ToString();           
             Min = min;
             Max = max;
         }
@@ -51,25 +51,33 @@ namespace christiancabalbag
         {
             AssociatedParts.Add(part);
         }
-        //public bool removeAssociatedPart(int partID) 
+        //public bool removeAssociatedPart(int partId)
         //{
-        //    bool success = false;
-        //    foreach (Part part in AssociatedParts)
-        //    {
-        //        if (part.PartId == partID)
-        //        {
-        //            AssociatedParts.Remove(part);
-        //            return success = true;
-        //        }
-        //        else
-        //        {
-        //            success = false;
-        //        }
-        //        return success;
-                
-        //    }
-            
+        //    //bool success = false;
+        //    //foreach (Part part in AssociatedParts)
+        //    //{
+        //    //    if (part.PartId == partID)
+        //    //    {
+        //    //        AssociatedParts.Remove(part);
+        //    //        return success = true;
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        success = false;
+        //    //    }
+        //    //    return success;
+
+        //    //}
+
         //}
+        public Part lookupAssociatedPart(int partId)
+        {
+            foreach (Part part in AssociatedParts)
+            {
+                if(part.PartId == partId) { return part; }
+            }
+            return null;
+        }
     }
 
 }

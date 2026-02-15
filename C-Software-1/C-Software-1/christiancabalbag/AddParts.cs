@@ -31,31 +31,36 @@ namespace christiancabalbag
             label8.Text = "Company Name"; //radio outsource to company name
         }
 
-        private void button1_Click(object sender, EventArgs e) //save
-        {
+        private void button1_Click(object sender, EventArgs e) //save button
+        {            
             int minStock;
             int maxStock;
             int inventoryStock;
             decimal price;
 
             try
-            {
+            {                
                 minStock = int.Parse(minTextBox.Text);
                 maxStock = int.Parse(maxTextBox.Text);
-                inventoryStock = int.Parse(minTextBox.Text);
-                price = decimal.Parse(maxTextBox.Text);
+                inventoryStock = int.Parse(textBox3.Text);
+                price = decimal.Parse(textBox4.Text);
             }
             catch
             {
-                MessageBox.Show("Please enter numeric values for Min, Max, Inventory and Price");
-                
+                MessageBox.Show("Please enter numeric values for Min, Max, Inventory and Price");                
                 return;
             }
+            
             string name = textBox2.Text;
             inventoryStock = int.Parse(textBox3.Text);
             price = decimal.Parse(textBox4.Text);
             maxStock =int.Parse(maxTextBox.Text);
             minStock = int.Parse(minTextBox.Text);
+            if (string.IsNullOrEmpty(textBox2.Text))
+            {
+                MessageBox.Show("Name must not be empty");
+                return;
+            }
             if (string.IsNullOrEmpty(textBox7.Text) && (radioButton1.Checked) )
             {
                 MessageBox.Show("Machine ID must not be empty");

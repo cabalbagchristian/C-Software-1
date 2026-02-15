@@ -15,7 +15,7 @@ namespace christiancabalbag
         public Form1()
         {
             InitializeComponent();
-            var part1 = new BindingSource(); //do i even need this part
+            var part1 = new BindingSource(); 
             part1.DataSource = Inventory.AllParts; //this shows and populate grid
             dgvParts.DataSource = Inventory.AllParts;
             dgvParts.ReadOnly = true; //add product grid readonly !!!!!
@@ -25,15 +25,16 @@ namespace christiancabalbag
             dgvProducts.DataSource = Inventory.Products;
             dgvProducts.ReadOnly = true;
             Inventory.exampleLists(); //calls example list
-            
+            Inventory.exampleLists2();
+
         }
          //click event start add,modify, cancel
-        private void button3_MouseClick(object sender, MouseEventArgs e)
+        private void button3_MouseClick(object sender, MouseEventArgs e) //addPart
         {            
             new AddParts().ShowDialog(); //don't use hide();           
         }
 
-        private void button6_MouseClick(object sender, MouseEventArgs e)
+        private void button6_MouseClick(object sender, MouseEventArgs e) //addproduct
         {            
             new AddProducts().ShowDialog();
         }
@@ -64,8 +65,14 @@ namespace christiancabalbag
             }            
         }
         private void button7_MouseClick(object sender, MouseEventArgs e)
-        {
-            new ModifyProducts().ShowDialog();            
+        {                
+            if (dgvProducts.CurrentRow == null || dgvProducts.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select an item.");
+                    return;
+                }
+            Product newprod = (Product)dgvProducts.CurrentRow.DataBoundItem;
+            new ModifyProducts(newprod).ShowDialog();
         }
         private void Exit_Click(object sender, EventArgs e)
         {

@@ -33,12 +33,12 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvAddProductAssoc = new System.Windows.Forms.DataGridView();
+            this.dgvAddProductPart = new System.Windows.Forms.DataGridView();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.minTextBox = new System.Windows.Forms.TextBox();
+            this.maxTextBox = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -51,8 +51,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAddProductAssoc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAddProductPart)).BeginInit();
             this.SuspendLayout();
             // 
             // label9
@@ -83,6 +83,7 @@
             this.button5.TabIndex = 60;
             this.button5.Text = "Save";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button3
             // 
@@ -92,6 +93,7 @@
             this.button3.TabIndex = 59;
             this.button3.Text = "Delete";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -101,26 +103,33 @@
             this.button2.TabIndex = 58;
             this.button2.Text = "Add";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // dataGridView2
+            // dgvAddProductAssoc
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(485, 390);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersWidth = 62;
-            this.dataGridView2.RowTemplate.Height = 28;
-            this.dataGridView2.Size = new System.Drawing.Size(497, 183);
-            this.dataGridView2.TabIndex = 57;
+            this.dgvAddProductAssoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAddProductAssoc.Location = new System.Drawing.Point(485, 390);
+            this.dgvAddProductAssoc.MultiSelect = false;
+            this.dgvAddProductAssoc.Name = "dgvAddProductAssoc";
+            this.dgvAddProductAssoc.ReadOnly = true;
+            this.dgvAddProductAssoc.RowHeadersWidth = 62;
+            this.dgvAddProductAssoc.RowTemplate.Height = 28;
+            this.dgvAddProductAssoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAddProductAssoc.Size = new System.Drawing.Size(497, 183);
+            this.dgvAddProductAssoc.TabIndex = 57;
             // 
-            // dataGridView1
+            // dgvAddProductPart
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(485, 109);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(497, 183);
-            this.dataGridView1.TabIndex = 56;
+            this.dgvAddProductPart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAddProductPart.Location = new System.Drawing.Point(485, 109);
+            this.dgvAddProductPart.MultiSelect = false;
+            this.dgvAddProductPart.Name = "dgvAddProductPart";
+            this.dgvAddProductPart.ReadOnly = true;
+            this.dgvAddProductPart.RowHeadersWidth = 62;
+            this.dgvAddProductPart.RowTemplate.Height = 28;
+            this.dgvAddProductPart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAddProductPart.Size = new System.Drawing.Size(497, 183);
+            this.dgvAddProductPart.TabIndex = 56;
             // 
             // textBox7
             // 
@@ -138,19 +147,19 @@
             this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // textBox6
+            // minTextBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(127, 371);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(108, 26);
-            this.textBox6.TabIndex = 53;
+            this.minTextBox.Location = new System.Drawing.Point(127, 371);
+            this.minTextBox.Name = "minTextBox";
+            this.minTextBox.Size = new System.Drawing.Size(108, 26);
+            this.minTextBox.TabIndex = 53;
             // 
-            // textBox5
+            // maxTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(127, 312);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(132, 26);
-            this.textBox5.TabIndex = 52;
+            this.maxTextBox.Location = new System.Drawing.Point(127, 312);
+            this.maxTextBox.Name = "maxTextBox";
+            this.maxTextBox.Size = new System.Drawing.Size(132, 26);
+            this.maxTextBox.TabIndex = 52;
             // 
             // textBox4
             // 
@@ -263,12 +272,12 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvAddProductAssoc);
+            this.Controls.Add(this.dgvAddProductPart);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.minTextBox);
+            this.Controls.Add(this.maxTextBox);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -283,8 +292,8 @@
             this.Controls.Add(this.label1);
             this.Name = "AddProducts";
             this.Text = "AddProducts";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAddProductAssoc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAddProductPart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,12 +306,12 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvAddProductAssoc;
+        private System.Windows.Forms.DataGridView dgvAddProductPart;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox minTextBox;
+        private System.Windows.Forms.TextBox maxTextBox;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
