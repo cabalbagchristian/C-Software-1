@@ -110,28 +110,72 @@ namespace christiancabalbag
                 return;
             }
         }
-        private void button8_Click(object sender, EventArgs e)
+        private void button8_Click(object sender, EventArgs e) //delete product
         {
             if (dgvProducts.CurrentRow == null || !dgvProducts.CurrentRow.Selected)
             {
                 MessageBox.Show("Nothing is Selected, Please make a selection");
                 return;
             }
+            Product p = dgvProducts.CurrentRow.DataBoundItem as Product;
+
+            if (p.AssociatedParts.Count > 0)
+            {
+                MessageBox.Show("Cannot delete product unless associated parts are removed. Please remove associated parts first");
+                return;
+            }
             DialogResult dialogResultPart = MessageBox.Show("Do you want to permantly remove this part?", "Delete?", MessageBoxButtons.YesNo);
             if (dialogResultPart == DialogResult.Yes)
             {
-                Product p = dgvProducts.CurrentRow.DataBoundItem as Product;
                 int Index = dgvProducts.CurrentCell.RowIndex; // leave this just in case i need it
                 Inventory.Products.Remove(p);
+                
             }
             else
             {
                 return;
             }
-
-
-
-
+        }
+                 
+        private void button1_Click(object sender, EventArgs e) //search
+        {
+            if (textBox1.Text.Length < 1)
+            return;
+            string textBox = textBox1.Text.ToUpper();
+            foreach (DataGridViewRow row in dgvParts.Rows)
+            {
+                string value1 = row.Cells["Partid"].Value.ToString().ToUpper();
+                string value2 = row.Cells["Name"].Value.ToString().ToUpper();
+                if (value1.Contains(textBox) || (value2.Contains(textBox)))
+                {
+                    row.Selected = true;
+                    break;
+                }
+                else
+                {
+                    row.Selected = false;
+                }
+            }        
+    }
+        private void button2_Click(object sender, EventArgs e) //search2
+        {
+            if (textBox2.Text.Length < 1)
+                return;
+            string textBox2a = textBox2.Text.ToUpper();
+            foreach (DataGridViewRow row in dgvProducts.Rows)
+            {
+                string value1 = row.Cells["Productid"].Value.ToString().ToUpper();
+                string value2 = row.Cells["Name"].Value.ToString().ToUpper();
+                if (value1.Contains(textBox2a) || (value2.Contains(textBox2a)))
+                {
+                    row.Selected = true;
+                    break;
+                }
+                else
+                {
+                    row.Selected = false;
+                }
+            }
         }
 
 

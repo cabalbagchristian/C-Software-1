@@ -61,11 +61,11 @@ namespace christiancabalbag
                 MessageBox.Show("Name must not be empty");
                 return;
             }
-            if (dgvAddProductAssoc.CurrentRow == null)
-            {
-                MessageBox.Show("Please add a part");
-                return;
-            }
+            //if (dgvAddProductAssoc.CurrentRow == null) eval said we can save without a part for add product
+            //{
+            //    MessageBox.Show("Please add a part");
+            //    return;
+            //}
             if (minStock > maxStock)
             {
                 MessageBox.Show("Max stock must not be less than Min stock");
@@ -116,5 +116,28 @@ namespace christiancabalbag
             Part addToBottom = (Part)dgvAddProductPart.CurrentRow.DataBoundItem;
             assocGrid.Add(addToBottom);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (textBox7.Text.Length < 1)
+                return;
+            string textBox = textBox7.Text.ToUpper();
+            foreach (DataGridViewRow row in dgvAddProductPart.Rows)
+            {
+                string value1 = row.Cells["Partid"].Value.ToString().ToUpper();
+                string value2 = row.Cells["Name"].Value.ToString().ToUpper();
+                if (value1.Contains(textBox) || (value2.Contains(textBox)))
+                {
+                    row.Selected = true;
+                    break;
+                }
+                else
+                {
+                    row.Selected = false;
+                }
+            }
+
+        }
     }
+    
 }

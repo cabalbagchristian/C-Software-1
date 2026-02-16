@@ -51,25 +51,24 @@ namespace christiancabalbag
         {
             AssociatedParts.Add(part);
         }
-        //public bool removeAssociatedPart(int partId)
-        //{
-        //    //bool success = false;
-        //    //foreach (Part part in AssociatedParts)
-        //    //{
-        //    //    if (part.PartId == partID)
-        //    //    {
-        //    //        AssociatedParts.Remove(part);
-        //    //        return success = true;
-        //    //    }
-        //    //    else
-        //    //    {
-        //    //        success = false;
-        //    //    }
-        //    //    return success;
-
-        //    //}
-
-        //}
+        public bool removeAssociatedPart(int partId)
+        {
+            bool success = false;
+            foreach (Part part in AssociatedParts)
+            {
+                if (part.PartId == partId)
+                {
+                    AssociatedParts.Remove(part);
+                    return success = true;
+                }
+                else
+                {
+                    success = false;
+                }
+            
+            }
+            return success;
+        }
         public Part lookupAssociatedPart(int partId)
         {
             foreach (Part part in AssociatedParts)

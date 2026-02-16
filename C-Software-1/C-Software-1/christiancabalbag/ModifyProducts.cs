@@ -40,9 +40,7 @@ namespace christiancabalbag
                 assocGrid.Add(part);
             }
 
-        }
-
-        
+        }        
 
         private void button4_Click(object sender, EventArgs e) //cancel
         {
@@ -134,6 +132,27 @@ namespace christiancabalbag
             Part addToBottom = (Part)dgvModifyProductPart.CurrentRow.DataBoundItem;
             assocGrid.Add(addToBottom);
         }
+        private void button1_Click(object sender, EventArgs e) //search
+        {
+            if (textBox7.Text.Length < 1)
+                return;
+            string textBox = textBox7.Text.ToUpper();
+            foreach (DataGridViewRow row in dgvModifyProductPart.Rows)
+            {
+                string value1 = row.Cells["Partid"].Value.ToString().ToUpper();
+                string value2 = row.Cells["Name"].Value.ToString().ToUpper();
+                if (value1.Contains(textBox) || (value2.Contains(textBox)))
+                {
+                    row.Selected = true;
+                    break;
+                }
+                else
+                {
+                    row.Selected = false;
+                }
+            }
+        
+        }
 
         //random label
         private void label8_Click(object sender, EventArgs e)
@@ -141,6 +160,6 @@ namespace christiancabalbag
 
         }
 
-       
+        
     }
 }
