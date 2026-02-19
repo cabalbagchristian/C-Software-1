@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Lifetime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -61,13 +62,45 @@ namespace christiancabalbag
             int instock;
             decimal price;
 
+            
+            try
+            {
+                instock = int.Parse(textBox3.Text);
+                price = decimal.Parse(textBox4.Text);
+                minstock = int.Parse(textBox6.Text);
+                maxstock = int.Parse(textBox5.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Please enter numerical values for Inventory, Price, Min and Max");
+                return;
+            }
             int id = int.Parse(textBox1.Text);
             string name = textBox2.Text;
             instock = int.Parse(textBox3.Text);
             price = decimal.Parse(textBox4.Text);
             minstock = int.Parse(textBox6.Text);
             maxstock = int.Parse(textBox5.Text);
-
+            if (string.IsNullOrEmpty(textBox2.Text)) //empty name message
+            {
+                MessageBox.Show("Please enter a Name");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(textBox7.Text) && (radioButton1.Checked))
+            {
+                MessageBox.Show("Machine ID must not be empty. Please add numeric values.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(textBox7.Text) && (radioButton2.Checked))
+            {
+                MessageBox.Show("Company Name must not be empty. Please add a name.");
+                return;
+            }
+            if (radioButton1.Checked && int.TryParse(textBox7.Text, out _) == false)
+            {
+                MessageBox.Show("Please enter numeric values for Machine ID.");
+                return;
+            }
             if (minstock > maxstock)
             {
                 MessageBox.Show("Min value cannot be more than Max.");
@@ -75,13 +108,13 @@ namespace christiancabalbag
             }
             if (instock > maxstock || instock < minstock)
             {
-                MessageBox.Show("Inventory cannot be more than Max and less than Min.");
+                MessageBox.Show("Inventory cannot be more than Max or less than Min.");
                 return;
             }
             if (radioButton1.Checked)
             {
                 Inhouse inHouse = new Inhouse(id, name, instock, price, maxstock, minstock, int.Parse(textBox7.Text));                
-                Inventory.updatePart(id, inHouse);  
+                Inventory.updatePart(id, inHouse);
             }
 
             else if (radioButton2.Checked) 

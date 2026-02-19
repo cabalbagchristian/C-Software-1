@@ -14,6 +14,8 @@ namespace christiancabalbag
     public partial class ModifyProducts : Form
     {
         BindingList<Part> assocGrid = new BindingList<Part>();
+        Form1 MainWindow = (Form1)Application.OpenForms["MainWindow"];
+
         public ModifyProducts(Product prod)
         {
             InitializeComponent();
@@ -107,11 +109,11 @@ namespace christiancabalbag
                 MessageBox.Show("Inventory must be between Max and Min stock");
                 return;
             }
-            if (dgvModifyProductPart.CurrentRow == null)
-            {
-                MessageBox.Show("Please add a part");
-                return;
-            }
+            //if (assocGrid.Count == 0) //eval said we can have zero parts associated with modify product
+            //{
+            //    MessageBox.Show("Please add a part");
+            //    return;
+            //}
             Product prod = new Product((Inventory.AllParts.Count + 1), name, inventoryStock, price, minStock, maxStock);
            
             foreach (Part part in assocGrid)
